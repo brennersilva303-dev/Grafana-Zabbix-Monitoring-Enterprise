@@ -1,0 +1,11 @@
+# EDITE AQUI: ajuste para o seu ambiente
+grafana:
+  url: http://SEU_GRAFANA:3000
+  user: SEU_USUARIO
+  password: SUA_SENHA
+zabbix:
+  url: http://SEU_ZABBIX/zabbix/api_jsonrpc.php
+  user: SEU_USUARIO
+  password: SUA_SENHA
+kiosk:
+  url: http://SEU_GRAFANA:3000/playlists/play/SUA_PLAYLIST?kiosk
