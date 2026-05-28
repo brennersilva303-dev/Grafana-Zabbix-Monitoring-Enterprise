@@ -12,7 +12,7 @@ Pacote sanitizado para GitHub com dashboards, scripts de automacao e documentaca
 ```text
 dashboards/   Dashboards Grafana exportados sem IDs internos fixos
 scripts/      Scripts de descoberta, coleta, importacao e validacao
-images/       Screenshots disponiveis dos dashboards
+images/       Screenshots reais dos dashboards, capturados em Chromium desktop e sanitizados
 docs/         Relatorio de sanitizacao e notas tecnicas
 ```
 
@@ -27,11 +27,12 @@ docs/         Relatorio de sanitizacao e notas tecnicas
 
 ## Screenshots
 
-![Monitoramento de Impressoras](images/monitoramento-impressoras.png)
-![Hyper-V Hosts V2](images/hyperv-hosts-monitoramento-executivo-v2.png)
-![Hyper-V VMs](images/hyperv-vms-monitoramento-executivo.png)
+![Monitoramento de Impressoras](images/printer-dashboard-overview.png)
+![Hyper-V Hosts V2](images/hyperv-hosts-overview.png)
+![Hyper-V VMs](images/hyperv-vms-overview.png)
+![Monitoramento DVR Intelbras](images/dvr-monitoring-overview.png)
 
-O projeto DVR Intelbras nao tinha screenshot seguro disponivel no momento da exportacao; importe o dashboard em seu Grafana e gere uma imagem propria se desejar.
+As imagens acima sao screenshots reais capturados em Chromium desktop, em modo kiosk/fullscreen, com dados sensiveis borrados ou substituidos por placeholders.
 
 ## Como usar
 

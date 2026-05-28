@@ -2,6 +2,20 @@
 
 Gerado em: 2026-05-28T14:48:45
 
+## Atualizacao de screenshots
+
+Atualizado em: 2026-05-28T16:10:00
+
+- Screenshots refeitos diretamente no Grafana via Chromium desktop/headless em 1920x1080.
+- Nenhum screenshot foi capturado da Raspberry Pi.
+- Previews/mockups antigos foram removidos do pacote final para evitar imagens quebradas ou desatualizadas.
+- Dados visuais sensiveis foram borrados ou substituidos por placeholders.
+- Arquivos finais:
+  - images/printer-dashboard-overview.png
+  - images/hyperv-hosts-overview.png
+  - images/hyperv-vms-overview.png
+  - images/dvr-monitoring-overview.png
+
 ## Arquivos copiados
 
 - /root/grafana-printers/dashboards/printer-dashboard.json -> /tmp/projetos-monitoramento-github/dashboards/monitoramento-impressoras/dashboard.json
@@ -29,8 +43,7 @@ Gerado em: 2026-05-28T14:48:45
 - /root/grafana-printers/provisioning/datasources/zabbix.yaml -> /tmp/projetos-monitoramento-github/scripts/monitoramento-impressoras/config-examples/datasources/zabbix.yaml
 - /root/grafana-printers/provisioning/printer-alerts.yaml -> /tmp/projetos-monitoramento-github/scripts/monitoramento-impressoras/config-examples/printer-alerts.yaml
 - /root/grafana-printers/README.md -> /tmp/projetos-monitoramento-github/docs/monitoramento-impressoras-original-readme-sanitized.md
-- /root/grafana-printers/docs/mockups/printer-dashboard-real-auth-1920x1080-v27.png -> /tmp/projetos-monitoramento-github/images/monitoramento-impressoras.png
-- /root/grafana-printers/docs/mockups/printer-dashboard-scale-3840x2160-scale1-kiosk.png -> /tmp/projetos-monitoramento-github/images/monitoramento-impressoras-printer-dashboard-scale-3840x2160-scale1-kiosk.png
+- Screenshot real capturado do Grafana -> /tmp/projetos-monitoramento-github/images/printer-dashboard-overview.png
 - /root/grafana-hyperv/dashboard-hyperv-hosts-v2.json -> /tmp/projetos-monitoramento-github/dashboards/hyperv-hosts-monitoramento-executivo-v2/dashboard.json
 - /root/grafana-hyperv/scripts/collect_hyperv_vm_metrics.py -> /tmp/projetos-monitoramento-github/scripts/hyperv-hosts-monitoramento-executivo-v2/collect_hyperv_vm_metrics.py
 - /root/grafana-hyperv/scripts/debug_no_data.sh -> /tmp/projetos-monitoramento-github/scripts/hyperv-hosts-monitoramento-executivo-v2/debug_no_data.sh
@@ -50,8 +63,7 @@ Gerado em: 2026-05-28T14:48:45
 - /root/grafana-hyperv/.grafana/provisioning/dashboards/local-dashboard.yml -> /tmp/projetos-monitoramento-github/scripts/hyperv-hosts-monitoramento-executivo-v2/config-examples/dashboards/local-dashboard.yml
 - /root/grafana-hyperv/.grafana/provisioning/datasources/local-zabbix.yml -> /tmp/projetos-monitoramento-github/scripts/hyperv-hosts-monitoramento-executivo-v2/config-examples/datasources/local-zabbix.yml
 - /root/grafana-hyperv/README.md -> /tmp/projetos-monitoramento-github/docs/hyperv-hosts-monitoramento-executivo-v2-original-readme-sanitized.md
-- /root/grafana-hyperv/docs/screenshots/hyperv-dashboard-review-1920x1080.png -> /tmp/projetos-monitoramento-github/images/hyperv-hosts-monitoramento-executivo-v2.png
-- /root/grafana-hyperv/docs/screenshots/hyperv-dashboard-review-3840x2160.png -> /tmp/projetos-monitoramento-github/images/hyperv-hosts-monitoramento-executivo-v2-hyperv-dashboard-review-3840x2160.png
+- Screenshot real capturado do Grafana -> /tmp/projetos-monitoramento-github/images/hyperv-hosts-overview.png
 - /opt/CameraDVR/dashboards/camera-dvr-dashboard.json -> /tmp/projetos-monitoramento-github/dashboards/monitoramento-dvr-intelbras/dashboard.json
 - /opt/CameraDVR/scripts/discover_zabbix_dvrs.py -> /tmp/projetos-monitoramento-github/scripts/monitoramento-dvr-intelbras/discover_zabbix_dvrs.py
 - /opt/CameraDVR/scripts/generate_grafana_dashboard.py -> /tmp/projetos-monitoramento-github/scripts/monitoramento-dvr-intelbras/generate_grafana_dashboard.py
@@ -79,8 +91,8 @@ Gerado em: 2026-05-28T14:48:45
 - /root/grafana-hyperv/.grafana/provisioning/dashboards/local-dashboard.yml -> /tmp/projetos-monitoramento-github/scripts/hyperv-vms-monitoramento-executivo/config-examples/dashboards/local-dashboard.yml
 - /root/grafana-hyperv/.grafana/provisioning/datasources/local-zabbix.yml -> /tmp/projetos-monitoramento-github/scripts/hyperv-vms-monitoramento-executivo/config-examples/datasources/local-zabbix.yml
 - /root/grafana-hyperv/README.md -> /tmp/projetos-monitoramento-github/docs/hyperv-vms-monitoramento-executivo-original-readme-sanitized.md
-- /root/grafana-hyperv/logs/hyperv-vms-3840x2160-validation.png -> /tmp/projetos-monitoramento-github/images/hyperv-vms-monitoramento-executivo.png
-- /root/grafana-hyperv/logs/hyperv-vms-3840x2160-selenium.png -> /tmp/projetos-monitoramento-github/images/hyperv-vms-monitoramento-executivo-hyperv-vms-3840x2160-selenium.png
+- Screenshot real capturado do Grafana -> /tmp/projetos-monitoramento-github/images/hyperv-vms-overview.png
+- Screenshot real capturado do Grafana -> /tmp/projetos-monitoramento-github/images/dvr-monitoring-overview.png
 
 ## Arquivos/itens ignorados
 
@@ -194,11 +206,23 @@ Detalhes em `docs/VALIDACAO_SENSIVE_SCAN.txt`.
 ## Observacoes
 
 - Pasta anterior movida para /tmp/projetos-monitoramento-github-old-20260528-144843
-- Sem screenshot seguro disponivel para Monitoramento DVR Intelbras
+- Screenshots seguros disponiveis para os quatro dashboards oficiais.
 
 ## Publicacao no compartilhamento
 
-- O pacote compactado foi enviado com sucesso para `\\10.1.1.40\Rede\Carlos\projetos-monitoramento-github.tar.gz` usando SMB autenticado.
+- O pacote compactado foi enviado com sucesso para o compartilhamento SMB definido pelo mantenedor.
 - A pasta expandida `projetos-monitoramento-github/` nao pode ser criada por este host porque nao ha `smbclient`/`mount.cifs`, `gio` nao suporta SMB aqui, e o `curl` SMB disponivel faz upload de arquivos mas nao cria diretorios remotos.
 - Para obter a pasta final no compartilhamento, extraia `projetos-monitoramento-github.tar.gz` no destino.
 - Nenhum projeto original foi alterado.
+
+
+## Atualizacao de imagens
+
+- Screenshots antigos/previews foram removidos do pacote final e nao sao referenciados pelo README.
+- Foram gerados screenshots PNG reais e sanitizados em `images/` para os quatro dashboards oficiais.
+- As imagens foram capturadas diretamente no Grafana em Chromium desktop/headless 1920x1080, sem abrir a Raspberry.
+
+## Atualizacao adicional de imagens
+
+- Screenshots brutos anteriores foram removidos do pacote para evitar dados sensiveis embutidos em pixels.
+- O README agora referencia apenas quatro screenshots reais sanitizados em `images/`, um para cada dashboard oficial.
