@@ -1,0 +1,381 @@
+{
+  "apiVersion": 1,
+  "groups": [
+    {
+      "orgId": 1,
+      "name": "Impressoras",
+      "folder": "Impressoras",
+      "interval": "1m",
+      "rules": [
+        {
+          "uid": "printer-offline",
+          "title": "Impressora offline",
+          "condition": "C",
+          "for": "5m",
+          "noDataState": "NoData",
+          "execErrState": "Error",
+          "labels": {
+            "severity": "critical",
+            "service": "printers"
+          },
+          "annotations": {
+            "summary": "Impressora sem resposta ICMP/SNMP"
+          },
+          "data": [
+            {
+              "refId": "A",
+              "datasourceUid": "zabbix",
+              "relativeTimeRange": {
+                "from": 600,
+                "to": 0
+              },
+              "model": {
+                "datasource": {
+                  "type": "alexanderzobnin-zabbix-datasource",
+                  "uid": "zabbix"
+                },
+                "group": {
+                  "filter": "/.*/"
+                },
+                "host": {
+                  "filter": "/.*/"
+                },
+                "item": {
+                  "filter": "/(?i)(icmpping|icmp ping|agent.ping|availability|status)/"
+                },
+                "queryType": 0,
+                "resultFormat": "time_series",
+                "refId": "A"
+              }
+            },
+            {
+              "refId": "B",
+              "datasourceUid": "__expr__",
+              "relativeTimeRange": {
+                "from": 600,
+                "to": 0
+              },
+              "model": {
+                "type": "reduce",
+                "expression": "A",
+                "reducer": "last",
+                "refId": "B"
+              }
+            },
+            {
+              "refId": "C",
+              "datasourceUid": "__expr__",
+              "relativeTimeRange": {
+                "from": 600,
+                "to": 0
+              },
+              "model": {
+                "type": "threshold",
+                "expression": "B",
+                "conditions": [
+                  {
+                    "evaluator": {
+                      "type": "lt",
+                      "params": [
+                        1
+                      ]
+                    },
+                    "operator": {
+                      "type": "and"
+                    },
+                    "query": {
+                      "params": [
+                        "C"
+                      ]
+                    },
+                    "reducer": {
+                      "type": "last"
+                    },
+                    "type": "query"
+                  }
+                ],
+                "refId": "C"
+              }
+            }
+          ]
+        },
+        {
+          "uid": "printer-toner-low",
+          "title": "Toner baixo <20%",
+          "condition": "C",
+          "for": "10m",
+          "noDataState": "NoData",
+          "execErrState": "Error",
+          "labels": {
+            "severity": "warning",
+            "service": "printers"
+          },
+          "annotations": {
+            "summary": "Toner abaixo de 20%"
+          },
+          "data": [
+            {
+              "refId": "A",
+              "datasourceUid": "zabbix",
+              "relativeTimeRange": {
+                "from": 600,
+                "to": 0
+              },
+              "model": {
+                "datasource": {
+                  "type": "alexanderzobnin-zabbix-datasource",
+                  "uid": "zabbix"
+                },
+                "group": {
+                  "filter": "/.*/"
+                },
+                "host": {
+                  "filter": "/.*/"
+                },
+                "item": {
+                  "filter": "/(?i)(toner|supply|cartridge|cartucho).*(black|preto|cyan|magenta|yellow|amarelo|%)|(?:black|preto|cyan|magenta|yellow|amarelo).*(toner|supply|cartucho|%)/"
+                },
+                "queryType": 0,
+                "resultFormat": "time_series",
+                "refId": "A"
+              }
+            },
+            {
+              "refId": "B",
+              "datasourceUid": "__expr__",
+              "relativeTimeRange": {
+                "from": 600,
+                "to": 0
+              },
+              "model": {
+                "type": "reduce",
+                "expression": "A",
+                "reducer": "last",
+                "refId": "B"
+              }
+            },
+            {
+              "refId": "C",
+              "datasourceUid": "__expr__",
+              "relativeTimeRange": {
+                "from": 600,
+                "to": 0
+              },
+              "model": {
+                "type": "threshold",
+                "expression": "B",
+                "conditions": [
+                  {
+                    "evaluator": {
+                      "type": "lt",
+                      "params": [
+                        20
+                      ]
+                    },
+                    "operator": {
+                      "type": "and"
+                    },
+                    "query": {
+                      "params": [
+                        "C"
+                      ]
+                    },
+                    "reducer": {
+                      "type": "last"
+                    },
+                    "type": "query"
+                  }
+                ],
+                "refId": "C"
+              }
+            }
+          ]
+        },
+        {
+          "uid": "printer-toner-critical",
+          "title": "Toner critico <10%",
+          "condition": "C",
+          "for": "5m",
+          "noDataState": "NoData",
+          "execErrState": "Error",
+          "labels": {
+            "severity": "critical",
+            "service": "printers"
+          },
+          "annotations": {
+            "summary": "Toner abaixo de 10%"
+          },
+          "data": [
+            {
+              "refId": "A",
+              "datasourceUid": "zabbix",
+              "relativeTimeRange": {
+                "from": 600,
+                "to": 0
+              },
+              "model": {
+                "datasource": {
+                  "type": "alexanderzobnin-zabbix-datasource",
+                  "uid": "zabbix"
+                },
+                "group": {
+                  "filter": "/.*/"
+                },
+                "host": {
+                  "filter": "/.*/"
+                },
+                "item": {
+                  "filter": "/(?i)(toner|supply|cartridge|cartucho).*(black|preto|cyan|magenta|yellow|amarelo|%)|(?:black|preto|cyan|magenta|yellow|amarelo).*(toner|supply|cartucho|%)/"
+                },
+                "queryType": 0,
+                "resultFormat": "time_series",
+                "refId": "A"
+              }
+            },
+            {
+              "refId": "B",
+              "datasourceUid": "__expr__",
+              "relativeTimeRange": {
+                "from": 600,
+                "to": 0
+              },
+              "model": {
+                "type": "reduce",
+                "expression": "A",
+                "reducer": "last",
+                "refId": "B"
+              }
+            },
+            {
+              "refId": "C",
+              "datasourceUid": "__expr__",
+              "relativeTimeRange": {
+                "from": 600,
+                "to": 0
+              },
+              "model": {
+                "type": "threshold",
+                "expression": "B",
+                "conditions": [
+                  {
+                    "evaluator": {
+                      "type": "lt",
+                      "params": [
+                        10
+                      ]
+                    },
+                    "operator": {
+                      "type": "and"
+                    },
+                    "query": {
+                      "params": [
+                        "C"
+                      ]
+                    },
+                    "reducer": {
+                      "type": "last"
+                    },
+                    "type": "query"
+                  }
+                ],
+                "refId": "C"
+              }
+            }
+          ]
+        },
+        {
+          "uid": "printer-snmp-failure",
+          "title": "Falha SNMP",
+          "condition": "C",
+          "for": "5m",
+          "noDataState": "Alerting",
+          "execErrState": "Error",
+          "labels": {
+            "severity": "critical",
+            "service": "printers"
+          },
+          "annotations": {
+            "summary": "Falha de comunicacao SNMP"
+          },
+          "data": [
+            {
+              "refId": "A",
+              "datasourceUid": "zabbix",
+              "relativeTimeRange": {
+                "from": 600,
+                "to": 0
+              },
+              "model": {
+                "datasource": {
+                  "type": "alexanderzobnin-zabbix-datasource",
+                  "uid": "zabbix"
+                },
+                "group": {
+                  "filter": "/.*/"
+                },
+                "host": {
+                  "filter": "/.*/"
+                },
+                "item": {
+                  "filter": "/(?i)(snmp.*availability|snmp.*available|snmp.*error|timeout|unavailable)/"
+                },
+                "queryType": 0,
+                "resultFormat": "time_series",
+                "refId": "A"
+              }
+            },
+            {
+              "refId": "B",
+              "datasourceUid": "__expr__",
+              "relativeTimeRange": {
+                "from": 600,
+                "to": 0
+              },
+              "model": {
+                "type": "reduce",
+                "expression": "A",
+                "reducer": "last",
+                "refId": "B"
+              }
+            },
+            {
+              "refId": "C",
+              "datasourceUid": "__expr__",
+              "relativeTimeRange": {
+                "from": 600,
+                "to": 0
+              },
+              "model": {
+                "type": "threshold",
+                "expression": "B",
+                "conditions": [
+                  {
+                    "evaluator": {
+                      "type": "lt",
+                      "params": [
+                        1
+                      ]
+                    },
+                    "operator": {
+                      "type": "and"
+                    },
+                    "query": {
+                      "params": [
+                        "C"
+                      ]
+                    },
+                    "reducer": {
+                      "type": "last"
+                    },
+                    "type": "query"
+                  }
+                ],
+                "refId": "C"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

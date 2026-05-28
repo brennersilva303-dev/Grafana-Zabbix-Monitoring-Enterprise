@@ -1,0 +1,14 @@
+apiVersion: 1
+
+providers:
+  - name: Printers
+    orgId: 1
+    folder: Impressoras
+    folderUid: printers
+    type: file
+    disableDeletion: false
+    editable: true
+    updateIntervalSeconds: 60
+    allowUiUpdates: true
+    options:
+      path: /etc/grafana/provisioning/dashboards/printers

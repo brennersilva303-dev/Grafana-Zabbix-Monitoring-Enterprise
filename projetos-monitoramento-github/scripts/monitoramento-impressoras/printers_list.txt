@@ -1,0 +1,42 @@
+Nome,Setor,Modelo,Serial,IP,Status
+EPSON L6270 Series,,EPSON L6270 Series,X8G6015657,SEU_IP_PRIVADO,Offline
+valparaiso_vendig,Valparaiso,Brother MFC-8890DW,D2J190899,SEU_IP_PRIVADO,Online
+sia_vendig,SIA,Brother MFC-8890DW,D2J190640,SEU_IP_PRIVADO,Online
+gama_pecas,Gama,Brother HL-5250DN series,D6J368316,SEU_IP_PRIVADO,Online
+Brother HL-5350DN series,,Brother HL-5350DN series,J9J361612,SEU_IP_PRIVADO,Online
+valparaiso_pecas,Valparaiso,Brother MFC-8890DW,H2J241698,SEU_IP_PRIVADO,Online
+valparaiso_servicos,Valparaiso,Brother MFC-8890DW,H2J241837,SEU_IP_PRIVADO,Online
+sia_caixa,SIA,Brother HL-5350DN series,G2J545688,SEU_IP_PRIVADO,Online
+valparaiso_caixa,Valparaiso,Brother HL-5250DN series,J7J278196,SEU_IP_PRIVADO,Online
+valparaiso_vendas,Valparaiso,Brother DCP-8157DN,U63264M4N933244,SEU_IP_PRIVADO,Online
+sia_dp,Administração,Brother DCP-8157DN,U63264E4N748256,SEU_IP_PRIVADO,Online
+sia_diretoria,Administração,Brother DCP-8157DN,U63264L4N910200,SEU_IP_PRIVADO,Online
+sia_estoque,SIA,Brother MFC-8890DW,M1J976661,SEU_IP_PRIVADO,Online
+sob_vendas,Sobradinho,Brother MFC-8890DW,E1J733799,SEU_IP_PRIVADO,Offline
+sia_recepcao,SIA,Brother MFC-8890DW,G2J230970,SEU_IP_PRIVADO,Online
+sseb_vendas,São Sebastião,Brother MFC-8890DW,A2J997741,SEU_IP_PRIVADO,Online
+remas_vendas,Recanto Loja,Brother MFC-8890DW,D2J191429,SEU_IP_PRIVADO,Online
+tag_servicos,Taguatinga,Brother HL-5250DN series,D6J368375,SEU_IP_PRIVADO,Online
+tag_vendas,Taguatinga,Brother MFC-8890DW,H2J241384,SEU_IP_PRIVADO,Online
+remas_pecas,Recanto Loja,Brother MFC-8890DW,H2J241807,SEU_IP_PRIVADO,Online
+gama_caixa,Gama,Brother HL-5350DN series,L9J440383,SEU_IP_PRIVADO,Offline
+gama_vendas,Gama,Brother MFC-8890DW,G2J230773,SEU_IP_PRIVADO,Online
+nvgama_vendas,Novo Gama,Brother DCP-8080DN,D1J712005,SEU_IP_PRIVADO,Online
+remas_caixa,Recanto Loja,Brother HL-5350DN series,F1J184930,SEU_IP_PRIVADO,Online
+EPSON L6270 Series,,EPSON L6270 Series,X8G6057991,SEU_IP_PRIVADO,Offline
+sia_backoffice,Administração,Brother DCP-8157DN,U63264E4N748257,SEU_IP_PRIVADO,Online
+Brother DCP-J140W,,Brother DCP-J140W,U63221M3F380320,SEU_IP_PRIVADO,Offline
+B431,,B431,AK26052817,SEU_IP_PRIVADO,Offline
+gama_servicos,Gama,Brother DCP-8080DN,D1J718098,SEU_IP_PRIVADO,Online
+valparaiso_consorcio,Valparaiso,Brother MFC-8912DW,U63267J4N867831,SEU_IP_PRIVADO,Online
+sia_vendas,SIA,Brother DCP-8157DN,U63264M4N933397,SEU_IP_PRIVADO,Online
+tag_estoque,Taguatinga,Brother HL-5350DN series,M0J867532,SEU_IP_PRIVADO,Online
+remas_servicos,Recanto Loja,Brother HL-5350DN series,M0J867499,SEU_IP_PRIVADO,Online
+Brother DCP-8157DN,,Brother DCP-8157DN,U63264M4N933227,SEU_IP_PRIVADO,Online
+sala_digital_2,SIA,Brother DCP-8157DN,U63264D4N706825,SEU_IP_PRIVADO,Online
+tag_caixa,Taguatinga,Brother HL-5350DN series,F9J288869,SEU_IP_PRIVADO,Online
+sia_contab,Administração,Brother DCP-8157DN,U63264E4N745824,SEU_IP_PRIVADO,Online
+sia_contab_1,Administração,Brother DCP-8157DN,U63264L5N322029,SEU_IP_PRIVADO,Online
+Brother MFC-8912DW,,Brother MFC-8912DW,U63267L4N921145,SEU_IP_PRIVADO,Online
+EPSON L6270 Series,SIA,EPSON L6270 Series,X8G6044413,SEU_IP_PRIVADO,Online
+tag_vendig,Taguatinga,Brother MFC-8890DW,M1J957632,SEU_IP_PRIVADO,Online

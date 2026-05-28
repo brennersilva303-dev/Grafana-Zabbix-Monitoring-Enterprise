@@ -1,0 +1,172 @@
+{
+  "uid": null,
+  "title": "Hyper-V Hosts - Monitoramento Executivo V2",
+  "tags": [
+    "hyper-v",
+    "zabbix",
+    "windows",
+    "noc",
+    "executivo",
+    "v2"
+  ],
+  "timezone": "browser",
+  "schemaVersion": 38,
+  "style": "light",
+  "editable": true,
+  "graphTooltip": 1,
+  "refresh": "30s",
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "1h"
+    ],
+    "time_options": [
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "7d",
+      "30d"
+    ]
+  },
+  "templating": {
+    "list": [
+      {
+        "name": "DS_ZABBIX",
+        "type": "datasource",
+        "query": "alexanderzobnin-zabbix-datasource",
+        "current": {
+          "text": "SEU_ZABBIX_DATASOURCE",
+          "value": "${DS_ZABBIX}"
+        },
+        "label": "Zabbix datasource",
+        "hide": 0
+      },
+      {
+        "name": "intervalo",
+        "label": "Intervalo",
+        "type": "custom",
+        "query": "30s,1m,5m,15m,1h",
+        "includeAll": false,
+        "multi": false,
+        "current": {
+          "selected": true,
+          "text": "30s",
+          "value": "30s"
+        },
+        "options": []
+      },
+      {
+        "name": "severidade",
+        "label": "Severidade",
+        "type": "custom",
+        "query": "1 : Information+,2 : Warning+,3 : Average+,4 : High+,5 : Disaster",
+        "includeAll": false,
+        "multi": false,
+        "current": {
+          "selected": true,
+          "text": "Warning+",
+          "value": "2"
+        },
+        "options": []
+      }
+    ]
+  },
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "alexanderzobnin-zabbix-datasource",
+          "uid": "${DS_ZABBIX}"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "text",
+      "title": "",
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "${DS_ZABBIX}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 4
+      },
+      "options": {
+        "mode": "html",
+        "content": "\n<div class=\"global-clock-wrap\">\n  <section class=\"global-clock-card\">\n    <span>Data / Hora</span>\n    <strong id=\"hvClockDate\">--/--/----</strong>\n    <b id=\"hvClockTime\">--:--:--</b>\n    <em>UTC-3</em>\n  </section>\n  <script>\n    (function () {\n      function pad(value) { return String(value).padStart(2, '0'); }\n      function tick() {\n        var localNow = new Date();\n        var utcMs = localNow.getTime() + (localNow.getTimezoneOffset() * 60000);\n        var now = new Date(utcMs - (3 * 60 * 60 * 1000));\n        var date = pad(now.getDate()) + '/' + pad(now.getMonth() + 1) + '/' + now.getFullYear();\n        var time = pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds());\n        var dateEl = document.getElementById('hvClockDate');\n        var timeEl = document.getElementById('hvClockTime');\n        if (dateEl) { dateEl.textContent = date; }\n        if (timeEl) { timeEl.textContent = time; }\n      }\n      tick();\n      window.setInterval(tick, 1000);\n    }());\n  </script>\n  <style>\n    .global-clock-wrap { width:100%; height:100%; box-sizing:border-box; display:flex; align-items:center; justify-content:center; padding:6px 12px; background:#f4f7fb; color:#172033; font-family:'Segoe UI',Arial,sans-serif; overflow:hidden; }\n    .global-clock-card { width:min(430px,100%); min-height:64px; display:grid; grid-template-columns:1fr auto; grid-template-areas:\"label tz\" \"date time\"; align-items:center; gap:4px 16px; background:#fff; border:1px solid #d7e0ec; border-left:8px solid #2f80ed; border-radius:14px; padding:10px 18px; box-shadow:0 6px 14px rgba(15,23,42,.08); }\n    .global-clock-card span { grid-area:label; color:#526176; font-size:11px; font-weight:900; text-transform:uppercase; }\n    .global-clock-card strong { grid-area:date; color:#0f172a; font-size:21px; line-height:1; font-weight:900; }\n    .global-clock-card b { grid-area:time; color:#0f172a; font-size:24px; line-height:1; font-weight:900; font-variant-numeric:tabular-nums; }\n    .global-clock-card em { grid-area:tz; justify-self:end; border-radius:999px; padding:4px 10px; background:#eef3f8; color:#526176; font-style:normal; font-size:11px; font-weight:900; }\n  </style>\n</div>\n"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "transparent": true
+    },
+    {
+      "id": 2,
+      "type": "text",
+      "title": "",
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "${DS_ZABBIX}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 4,
+        "w": 24,
+        "h": 22
+      },
+      "options": {
+        "mode": "html",
+        "content": "\n<div class=\"host-panel online\">\n  <header class=\"host-title\">\n    <div>\n      <h2>HYPERV_HOST_A</h2>\n      <p>Monitoramento executivo e técnico do host físico Hyper-V</p>\n    </div>\n    <span class=\"host-status-pill\">ONLINE</span>\n  </header>\n\n  <section class=\"metrics-row\">\n    <div class='host-metric green'><span>Status</span><strong>Online</strong></div>\n    <div class='host-metric green'><span>Uptime</span><strong>446d 18h</strong></div>\n    <div class='host-metric ok'><span>CPU host fallback</span><strong>0.3%</strong></div>\n    <div class='host-metric blue'><span>CPU Hyper-V real</span><strong>27.13%</strong></div>\n    <div class='host-metric slate'><span>Memória usada</span><strong>309.9 GB</strong></div>\n    <div class='host-metric ok'><span>Disco crítico</span><strong>F: 68.3%</strong></div>\n    <div class='host-metric green'><span>Problemas ativos</span><strong>0</strong></div>\n  </section>\n\n  <section class=\"metrics-row disk-io-row\">\n    <div class='host-metric blue'><span>IOPS disco</span><strong>524.65</strong></div>\n    <div class='host-metric blue'><span>Throughput disco</span><strong>SEU_IP_PRIVADO.8 MB/s</strong></div>\n    <div class='host-metric yellow'><span>Fila disco</span><strong>0.24</strong></div>\n    <div class='host-metric yellow'><span>Latência disco</span><strong>0.40 ms</strong></div>\n  </section>\n\n  <section class=\"charts-row\">\n    \n      <div class=\"chart-card\">\n        <div class=\"chart-head\"><span>CPU host fallback</span><strong>0.3%</strong></div>\n        <svg viewBox=\"0 0 380 110\" preserveAspectRatio=\"none\" class=\"spark\">\n          <defs>\n            <linearGradient id=\"fill-2541572111476861214\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n              <stop offset=\"0%\" stop-color=\"#2f80ed\" stop-opacity=\".28\"/>\n              <stop offset=\"100%\" stop-color=\"#2f80ed\" stop-opacity=\".02\"/>\n            </linearGradient>\n          </defs>\n          <polyline points=\"0,105 0.0,81.9 42.2,81.9 84.4,81.9 126.7,81.9 168.9,81.9 211.1,81.9 253.3,81.9 295.6,81.9 337.8,81.9 380.0,81.9 380,105\" fill=\"url(#fill-2541572111476861214)\" stroke=\"none\"/>\n          <polyline points=\"0.0,81.9 42.2,81.9 84.4,81.9 126.7,81.9 168.9,81.9 211.1,81.9 253.3,81.9 295.6,81.9 337.8,81.9 380.0,81.9\" fill=\"none\" stroke=\"#2f80ed\" stroke-width=\"5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          <line x1=\"0\" y1=\"92\" x2=\"380\" y2=\"92\" stroke=\"#dbe4ef\" stroke-width=\"1\"/>\n        </svg>\n      </div>\n    \n    \n      <div class=\"chart-card gauge-card\">\n        <div class=\"chart-head\"><span>Memória usada %</span><strong>74.6%</strong></div>\n        <svg viewBox=\"0 0 160 120\" class=\"gauge-svg\">\n          <path d=\"M30 92 A50 50 0 0 1 130 92\" fill=\"none\" stroke=\"#e6edf5\" stroke-width=\"16\" stroke-linecap=\"round\"/>\n          <path d=\"M30 92 A50 50 0 0 1 130 92\" fill=\"none\" stroke=\"#22c55e\" stroke-width=\"16\" stroke-linecap=\"round\" stroke-dasharray=\"197.1 264\"/>\n          <text x=\"80\" y=\"75\" text-anchor=\"middle\" class=\"gauge-value\">RAM</text>\n          <text x=\"80\" y=\"97\" text-anchor=\"middle\" class=\"gauge-label\">74.6%</text>\n        </svg>\n      </div>\n    \n    \n      <div class=\"chart-card\">\n        <div class=\"chart-head\"><span>Rede entrada</span><strong>2.8 Mbps</strong></div>\n        <svg viewBox=\"0 0 380 110\" preserveAspectRatio=\"none\" class=\"spark\">\n          <defs>\n            <linearGradient id=\"fill-8000307600309383849\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n              <stop offset=\"0%\" stop-color=\"#22a85a\" stop-opacity=\".28\"/>\n              <stop offset=\"100%\" stop-color=\"#22a85a\" stop-opacity=\".02\"/>\n            </linearGradient>\n          </defs>\n          <polyline points=\"0,105 0.0,44.9 42.2,39.3 84.4,47.1 126.7,34.3 168.9,41.5 211.1,29.3 253.3,36.0 295.6,24.8 337.8,31.5 380.0,29.3 380,105\" fill=\"url(#fill-8000307600309383849)\" stroke=\"none\"/>\n          <polyline points=\"0.0,44.9 42.2,39.3 84.4,47.1 126.7,34.3 168.9,41.5 211.1,29.3 253.3,36.0 295.6,24.8 337.8,31.5 380.0,29.3\" fill=\"none\" stroke=\"#22a85a\" stroke-width=\"5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          <line x1=\"0\" y1=\"92\" x2=\"380\" y2=\"92\" stroke=\"#dbe4ef\" stroke-width=\"1\"/>\n        </svg>\n      </div>\n    \n    \n      <div class=\"chart-card\">\n        <div class=\"chart-head\"><span>Rede saída</span><strong>6.8 Mbps</strong></div>\n        <svg viewBox=\"0 0 380 110\" preserveAspectRatio=\"none\" class=\"spark\">\n          <defs>\n            <linearGradient id=\"fill-3096555579634239771\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n              <stop offset=\"0%\" stop-color=\"#475569\" stop-opacity=\".28\"/>\n              <stop offset=\"100%\" stop-color=\"#475569\" stop-opacity=\".02\"/>\n            </linearGradient>\n          </defs>\n          <polyline points=\"0,105 0.0,44.9 42.2,39.3 84.4,47.1 126.7,34.3 168.9,41.5 211.1,29.3 253.3,36.0 295.6,24.8 337.8,31.5 380.0,29.3 380,105\" fill=\"url(#fill-3096555579634239771)\" stroke=\"none\"/>\n          <polyline points=\"0.0,44.9 42.2,39.3 84.4,47.1 126.7,34.3 168.9,41.5 211.1,29.3 253.3,36.0 295.6,24.8 337.8,31.5 380.0,29.3\" fill=\"none\" stroke=\"#475569\" stroke-width=\"5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          <line x1=\"0\" y1=\"92\" x2=\"380\" y2=\"92\" stroke=\"#dbe4ef\" stroke-width=\"1\"/>\n        </svg>\n      </div>\n    \n  </section>\n\n  <section class=\"tables-row two\">\n    <article class=\"data-card\">\n      <h3>Todos os discos</h3>\n      <table><thead><tr><th>Volume</th><th>Uso</th><th>Usado</th><th>Total</th><th>Livre</th><th>Última coleta</th></tr></thead><tbody><tr><td>C:</td><td class='num'><span class='pill ok'>67.3%</span></td><td class='num'>300.0 GB</td><td class='num'>446.0 GB</td><td class='num'>146.0 GB</td><td>2026-05-28 14:47:34</td></tr><tr><td>D:</td><td class='num'><span class='pill ok'>0.0%</span></td><td class='num'>120.6 MB</td><td class='num'>700.0 GB</td><td class='num'>699.9 GB</td><td>2026-05-28 14:47:35</td></tr><tr><td>F:</td><td class='num'><span class='pill ok'>68.3%</span></td><td class='num'>1.9 TB</td><td class='num'>2.7 TB</td><td class='num'>885.6 GB</td><td>2026-05-28 14:47:45</td></tr><tr><td>G:</td><td class='num'><span class='pill ok'>66.0%</span></td><td class='num'>1.2 TB</td><td class='num'>1.8 TB</td><td class='num'>633.7 GB</td><td>2026-05-28 14:47:46</td></tr></tbody></table>\n    </article>\n    <article class=\"data-card event-card\">\n      <h3>Problemas ativos</h3>\n      <div class='problems-list'><div class='problem-row'><span class='severity average'>AVERAGE</span><div><strong>&quot;BITS&quot; (Background Intelligent Transfer Service) is not running (startup type automatic d...</strong><em>HYPERV_HOST_A · Ativo há 3d 2h</em></div></div></div>\n    </article>\n  </section>\n</div>\n\n<style>\n  .host-panel { width:100%; height:100%; box-sizing:border-box; padding:clamp(12px,.75vw,20px); background:#f4f7fb; color:#172033; font-family:'Segoe UI',Arial,sans-serif; overflow:hidden; }\n  .host-panel * { box-sizing:border-box; }\n  .host-title { display:flex; align-items:flex-start; justify-content:space-between; gap:14px; margin-bottom:10px; background:#fff; border:1px solid #d7e0ec; border-left:10px solid #22c55e; border-radius:14px; padding:14px 18px; box-shadow:0 6px 14px rgba(15,23,42,.08); }\n  .host-panel.offline .host-title { border-left-color:#ef4444; }\n  .host-title h2 { margin:0; font-size:clamp(28px,1.65vw,42px); line-height:1; color:#0f172a; font-weight:900; }\n  .host-title p { margin:7px 0 0; color:#526176; font-size:clamp(12px,.72vw,18px); font-weight:800; }\n  .host-status-pill { flex:0 0 auto; border-radius:999px; padding:8px 18px; font-size:clamp(12px,.72vw,18px); font-weight:900; background:#dcfce7; color:#166534; }\n  .host-panel.offline .host-status-pill { background:#fee2e2; color:#991b1b; }\n  .metrics-row { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:10px; margin-bottom:10px; }\n  .disk-io-row { grid-template-columns:repeat(4,minmax(0,1fr)); }\n  .host-metric { min-height:86px; background:#fff; border:1px solid #d7e0ec; border-top:7px solid #64748b; border-radius:13px; padding:12px 14px; box-shadow:0 5px 12px rgba(15,23,42,.07); overflow:hidden; }\n  .host-metric span { display:block; color:#526176; font-size:clamp(11px,.65vw,16px); font-weight:900; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }\n  .host-metric strong { display:block; color:#0f172a; font-size:clamp(21px,1.25vw,34px); line-height:1.05; margin-top:12px; font-weight:900; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }\n  .host-metric.green,.host-metric.ok { border-top-color:#22c55e; }\n  .host-metric.red,.host-metric.crit { border-top-color:#ef4444; }\n  .host-metric.warn,.host-metric.yellow { border-top-color:#facc15; }\n  .host-metric.blue { border-top-color:#2f80ed; }\n  .host-metric.slate { border-top-color:#64748b; }\n  .charts-row { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin-bottom:10px; }\n  .chart-card,.data-card { background:#fff; border:1px solid #d7e0ec; border-radius:13px; padding:12px 14px; box-shadow:0 5px 12px rgba(15,23,42,.07); overflow:hidden; }\n  .chart-head { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:7px; }\n  .chart-head span,.data-card h3 { margin:0; color:#526176; font-size:clamp(12px,.7vw,18px); font-weight:900; text-transform:uppercase; }\n  .chart-head strong { color:#0f172a; font-size:clamp(19px,1.05vw,28px); font-weight:900; white-space:nowrap; }\n  .spark { width:100%; height:118px; display:block; }\n  .gauge-card { min-height:164px; }\n  .gauge-svg { width:100%; height:118px; display:block; }\n  .gauge-value { font-size:20px; fill:#0f172a; font-weight:900; }\n  .gauge-label { font-size:15px; fill:#526176; font-weight:900; }\n  .tables-row { display:grid; gap:10px; margin-bottom:10px; }\n  .tables-row.two { grid-template-columns:1.35fr .65fr; margin-bottom:0; }\n  .data-card h3 { margin-bottom:9px; color:#0f172a; }\n  table { width:100%; border-collapse:separate; border-spacing:0; table-layout:fixed; font-size:clamp(11px,.62vw,16px); }\n  th { text-align:left; color:#526176; background:#eef3f8; text-transform:uppercase; font-size:clamp(10px,.54vw,14px); font-weight:900; padding:7px 8px; border-bottom:1px solid #dbe4ef; }\n  td { padding:7px 8px; border-bottom:1px solid #e6edf5; color:#172033; font-weight:750; vertical-align:top; overflow-wrap:anywhere; line-height:1.2; }\n  tr:last-child td { border-bottom:0; }\n  .num { text-align:right; font-variant-numeric:tabular-nums; }\n  .pill { border-radius:999px; padding:4px 9px; font-size:clamp(10px,.52vw,13px); font-weight:900; display:inline-block; }\n  .pill.ok,.pill.normal { background:#dcfce7; color:#166534; }\n  .pill.warn { background:#fef3c7; color:#92400e; }\n  .pill.crit { background:#fee2e2; color:#991b1b; }\n  .event-card { display:flex; flex-direction:column; }\n  .event-text { flex:1; min-height:118px; display:flex; align-items:center; justify-content:center; text-align:center; color:#0f172a; font-size:clamp(22px,1.25vw,34px); font-weight:900; background:#eef3f8; border-radius:10px; padding:12px; }\n  .problems-list { flex:1; min-height:118px; display:grid; gap:8px; align-content:center; }\n  .problem-row { min-width:0; display:grid; grid-template-columns:auto minmax(0,1fr); gap:10px; align-items:center; background:#eef3f8; border-radius:10px; padding:9px 10px; }\n  .problem-row strong { display:block; color:#0f172a; font-size:clamp(14px,.82vw,22px); line-height:1.12; font-weight:900; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }\n  .problem-row em { display:block; margin-top:5px; color:#526176; font-size:clamp(11px,.62vw,16px); line-height:1; font-style:normal; font-weight:800; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }\n  .severity { border-radius:999px; padding:6px 10px; color:#fff; font-size:clamp(10px,.58vw,15px); font-weight:900; letter-spacing:.03em; }\n  .severity.critical { background:#dc2626; }\n  .severity.high { background:#f97316; }\n  .severity.warning { background:#facc15; color:#713f12; }\n  .severity.average { background:#f59e0b; color:#78350f; }\n  .severity.info { background:#2f80ed; }\n  .problem-ok { flex:1; min-height:118px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; text-align:center; background:#dcfce7; color:#166534; border-radius:10px; padding:12px; }\n  .problem-ok strong { font-size:clamp(24px,1.45vw,38px); line-height:1; font-weight:900; }\n  .problem-ok span { font-size:clamp(15px,.9vw,24px); font-weight:900; }\n  .summary-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }\n  .summary-grid div { min-width:0; background:#eef3f8; border-radius:9px; padding:8px 10px; }\n  .summary-grid span { display:block; color:#526176; font-size:clamp(10px,.54vw,14px); font-weight:900; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }\n  .summary-grid strong { display:block; margin-top:6px; color:#0f172a; font-size:clamp(15px,.82vw,22px); font-weight:900; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }\n</style>\n\n"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "transparent": true
+    },
+    {
+      "id": 3,
+      "type": "text",
+      "title": "",
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "${DS_ZABBIX}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 26,
+        "w": 24,
+        "h": 22
+      },
+      "options": {
+        "mode": "html",
+        "content": "\n<div class=\"host-panel online\">\n  <header class=\"host-title\">\n    <div>\n      <h2>HYPERV-HYPERV_HOST_B</h2>\n      <p>Monitoramento executivo e técnico do host físico Hyper-V</p>\n    </div>\n    <span class=\"host-status-pill\">ONLINE</span>\n  </header>\n\n  <section class=\"metrics-row\">\n    <div class='host-metric green'><span>Status</span><strong>Online</strong></div>\n    <div class='host-metric green'><span>Uptime</span><strong>434d 0h</strong></div>\n    <div class='host-metric ok'><span>CPU host fallback</span><strong>0.2%</strong></div>\n    <div class='host-metric blue'><span>CPU Hyper-V real</span><strong>6.84%</strong></div>\n    <div class='host-metric slate'><span>Memória usada</span><strong>340.8 GB</strong></div>\n    <div class='host-metric ok'><span>Disco crítico</span><strong>C: 79.3%</strong></div>\n    <div class='host-metric red'><span>Problemas ativos</span><strong>2</strong></div>\n  </section>\n\n  <section class=\"metrics-row disk-io-row\">\n    <div class='host-metric blue'><span>IOPS disco</span><strong>1080.05</strong></div>\n    <div class='host-metric blue'><span>Throughput disco</span><strong>41.3 MB/s</strong></div>\n    <div class='host-metric yellow'><span>Fila disco</span><strong>0.24</strong></div>\n    <div class='host-metric yellow'><span>Latência disco</span><strong>0.22 ms</strong></div>\n  </section>\n\n  <section class=\"charts-row\">\n    \n      <div class=\"chart-card\">\n        <div class=\"chart-head\"><span>CPU host fallback</span><strong>0.2%</strong></div>\n        <svg viewBox=\"0 0 380 110\" preserveAspectRatio=\"none\" class=\"spark\">\n          <defs>\n            <linearGradient id=\"fill-2541572111476861214\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n              <stop offset=\"0%\" stop-color=\"#2f80ed\" stop-opacity=\".28\"/>\n              <stop offset=\"100%\" stop-color=\"#2f80ed\" stop-opacity=\".02\"/>\n            </linearGradient>\n          </defs>\n          <polyline points=\"0,105 0.0,81.9 42.2,81.9 84.4,81.9 126.7,81.9 168.9,81.9 211.1,81.9 253.3,81.9 295.6,81.9 337.8,81.9 380.0,81.9 380,105\" fill=\"url(#fill-2541572111476861214)\" stroke=\"none\"/>\n          <polyline points=\"0.0,81.9 42.2,81.9 84.4,81.9 126.7,81.9 168.9,81.9 211.1,81.9 253.3,81.9 295.6,81.9 337.8,81.9 380.0,81.9\" fill=\"none\" stroke=\"#2f80ed\" stroke-width=\"5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          <line x1=\"0\" y1=\"92\" x2=\"380\" y2=\"92\" stroke=\"#dbe4ef\" stroke-width=\"1\"/>\n        </svg>\n      </div>\n    \n    \n      <div class=\"chart-card gauge-card\">\n        <div class=\"chart-head\"><span>Memória usada %</span><strong>44.4%</strong></div>\n        <svg viewBox=\"0 0 160 120\" class=\"gauge-svg\">\n          <path d=\"M30 92 A50 50 0 0 1 130 92\" fill=\"none\" stroke=\"#e6edf5\" stroke-width=\"16\" stroke-linecap=\"round\"/>\n          <path d=\"M30 92 A50 50 0 0 1 130 92\" fill=\"none\" stroke=\"#22c55e\" stroke-width=\"16\" stroke-linecap=\"round\" stroke-dasharray=\"117.2 264\"/>\n          <text x=\"80\" y=\"75\" text-anchor=\"middle\" class=\"gauge-value\">RAM</text>\n          <text x=\"80\" y=\"97\" text-anchor=\"middle\" class=\"gauge-label\">44.4%</text>\n        </svg>\n      </div>\n    \n    \n      <div class=\"chart-card\">\n        <div class=\"chart-head\"><span>Rede entrada</span><strong>937.7 Kbps</strong></div>\n        <svg viewBox=\"0 0 380 110\" preserveAspectRatio=\"none\" class=\"spark\">\n          <defs>\n            <linearGradient id=\"fill-8000307600309383849\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n              <stop offset=\"0%\" stop-color=\"#22a85a\" stop-opacity=\".28\"/>\n              <stop offset=\"100%\" stop-color=\"#22a85a\" stop-opacity=\".02\"/>\n            </linearGradient>\n          </defs>\n          <polyline points=\"0,105 0.0,44.9 42.2,39.3 84.4,47.1 126.7,34.3 168.9,41.5 211.1,29.3 253.3,36.0 295.6,24.8 337.8,31.5 380.0,29.3 380,105\" fill=\"url(#fill-8000307600309383849)\" stroke=\"none\"/>\n          <polyline points=\"0.0,44.9 42.2,39.3 84.4,47.1 126.7,34.3 168.9,41.5 211.1,29.3 253.3,36.0 295.6,24.8 337.8,31.5 380.0,29.3\" fill=\"none\" stroke=\"#22a85a\" stroke-width=\"5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          <line x1=\"0\" y1=\"92\" x2=\"380\" y2=\"92\" stroke=\"#dbe4ef\" stroke-width=\"1\"/>\n        </svg>\n      </div>\n    \n    \n      <div class=\"chart-card\">\n        <div class=\"chart-head\"><span>Rede saída</span><strong>1.5 Mbps</strong></div>\n        <svg viewBox=\"0 0 380 110\" preserveAspectRatio=\"none\" class=\"spark\">\n          <defs>\n            <linearGradient id=\"fill-3096555579634239771\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n              <stop offset=\"0%\" stop-color=\"#475569\" stop-opacity=\".28\"/>\n              <stop offset=\"100%\" stop-color=\"#475569\" stop-opacity=\".02\"/>\n            </linearGradient>\n          </defs>\n          <polyline points=\"0,105 0.0,44.9 42.2,39.3 84.4,47.1 126.7,34.3 168.9,41.5 211.1,29.3 253.3,36.0 295.6,24.8 337.8,31.5 380.0,29.3 380,105\" fill=\"url(#fill-3096555579634239771)\" stroke=\"none\"/>\n          <polyline points=\"0.0,44.9 42.2,39.3 84.4,47.1 126.7,34.3 168.9,41.5 211.1,29.3 253.3,36.0 295.6,24.8 337.8,31.5 380.0,29.3\" fill=\"none\" stroke=\"#475569\" stroke-width=\"5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          <line x1=\"0\" y1=\"92\" x2=\"380\" y2=\"92\" stroke=\"#dbe4ef\" stroke-width=\"1\"/>\n        </svg>\n      </div>\n    \n  </section>\n\n  <section class=\"tables-row two\">\n    <article class=\"data-card\">\n      <h3>Todos os discos</h3>\n      <table><thead><tr><th>Volume</th><th>Uso</th><th>Usado</th><th>Total</th><th>Livre</th><th>Última coleta</th></tr></thead><tbody><tr><td>C:</td><td class='num'><span class='pill ok'>79.3%</span></td><td class='num'>1.5 TB</td><td class='num'>1.9 TB</td><td class='num'>393.8 GB</td><td>2026-05-28 14:47:40</td></tr><tr><td>D:</td><td class='num'><span class='pill ok'>0.0%</span></td><td class='num'>130.4 MB</td><td class='num'>500.0 GB</td><td class='num'>499.9 GB</td><td>2026-05-28 14:47:41</td></tr></tbody></table>\n    </article>\n    <article class=\"data-card event-card\">\n      <h3>Problemas ativos</h3>\n      <div class='problems-list'><div class='problem-row'><span class='severity average'>AVERAGE</span><div><strong>&quot;UALSVC&quot; (User Access Logging Service) is not running (startup type automatic delayed)</strong><em>HYPERV-HYPERV_HOST_B · Ativo há 6d 23h</em></div></div><div class='problem-row'><span class='severity average'>AVERAGE</span><div><strong>&quot;DPS&quot; (Diagnostic Policy Service) is not running (startup type automatic delayed)</strong><em>HYPERV-HYPERV_HOST_B · Ativo há 6d 23h</em></div></div></div>\n    </article>\n  </section>\n</div>\n\n<style>\n  .host-panel { width:100%; height:100%; box-sizing:border-box; padding:clamp(12px,.75vw,20px); background:#f4f7fb; color:#172033; font-family:'Segoe UI',Arial,sans-serif; overflow:hidden; }\n  .host-panel * { box-sizing:border-box; }\n  .host-title { display:flex; align-items:flex-start; justify-content:space-between; gap:14px; margin-bottom:10px; background:#fff; border:1px solid #d7e0ec; border-left:10px solid #22c55e; border-radius:14px; padding:14px 18px; box-shadow:0 6px 14px rgba(15,23,42,.08); }\n  .host-panel.offline .host-title { border-left-color:#ef4444; }\n  .host-title h2 { margin:0; font-size:clamp(28px,1.65vw,42px); line-height:1; color:#0f172a; font-weight:900; }\n  .host-title p { margin:7px 0 0; color:#526176; font-size:clamp(12px,.72vw,18px); font-weight:800; }\n  .host-status-pill { flex:0 0 auto; border-radius:999px; padding:8px 18px; font-size:clamp(12px,.72vw,18px); font-weight:900; background:#dcfce7; color:#166534; }\n  .host-panel.offline .host-status-pill { background:#fee2e2; color:#991b1b; }\n  .metrics-row { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:10px; margin-bottom:10px; }\n  .disk-io-row { grid-template-columns:repeat(4,minmax(0,1fr)); }\n  .host-metric { min-height:86px; background:#fff; border:1px solid #d7e0ec; border-top:7px solid #64748b; border-radius:13px; padding:12px 14px; box-shadow:0 5px 12px rgba(15,23,42,.07); overflow:hidden; }\n  .host-metric span { display:block; color:#526176; font-size:clamp(11px,.65vw,16px); font-weight:900; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }\n  .host-metric strong { display:block; color:#0f172a; font-size:clamp(21px,1.25vw,34px); line-height:1.05; margin-top:12px; font-weight:900; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }\n  .host-metric.green,.host-metric.ok { border-top-color:#22c55e; }\n  .host-metric.red,.host-metric.crit { border-top-color:#ef4444; }\n  .host-metric.warn,.host-metric.yellow { border-top-color:#facc15; }\n  .host-metric.blue { border-top-color:#2f80ed; }\n  .host-metric.slate { border-top-color:#64748b; }\n  .charts-row { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin-bottom:10px; }\n  .chart-card,.data-card { background:#fff; border:1px solid #d7e0ec; border-radius:13px; padding:12px 14px; box-shadow:0 5px 12px rgba(15,23,42,.07); overflow:hidden; }\n  .chart-head { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:7px; }\n  .chart-head span,.data-card h3 { margin:0; color:#526176; font-size:clamp(12px,.7vw,18px); font-weight:900; text-transform:uppercase; }\n  .chart-head strong { color:#0f172a; font-size:clamp(19px,1.05vw,28px); font-weight:900; white-space:nowrap; }\n  .spark { width:100%; height:118px; display:block; }\n  .gauge-card { min-height:164px; }\n  .gauge-svg { width:100%; height:118px; display:block; }\n  .gauge-value { font-size:20px; fill:#0f172a; font-weight:900; }\n  .gauge-label { font-size:15px; fill:#526176; font-weight:900; }\n  .tables-row { display:grid; gap:10px; margin-bottom:10px; }\n  .tables-row.two { grid-template-columns:1.35fr .65fr; margin-bottom:0; }\n  .data-card h3 { margin-bottom:9px; color:#0f172a; }\n  table { width:100%; border-collapse:separate; border-spacing:0; table-layout:fixed; font-size:clamp(11px,.62vw,16px); }\n  th { text-align:left; color:#526176; background:#eef3f8; text-transform:uppercase; font-size:clamp(10px,.54vw,14px); font-weight:900; padding:7px 8px; border-bottom:1px solid #dbe4ef; }\n  td { padding:7px 8px; border-bottom:1px solid #e6edf5; color:#172033; font-weight:750; vertical-align:top; overflow-wrap:anywhere; line-height:1.2; }\n  tr:last-child td { border-bottom:0; }\n  .num { text-align:right; font-variant-numeric:tabular-nums; }\n  .pill { border-radius:999px; padding:4px 9px; font-size:clamp(10px,.52vw,13px); font-weight:900; display:inline-block; }\n  .pill.ok,.pill.normal { background:#dcfce7; color:#166534; }\n  .pill.warn { background:#fef3c7; color:#92400e; }\n  .pill.crit { background:#fee2e2; color:#991b1b; }\n  .event-card { display:flex; flex-direction:column; }\n  .event-text { flex:1; min-height:118px; display:flex; align-items:center; justify-content:center; text-align:center; color:#0f172a; font-size:clamp(22px,1.25vw,34px); font-weight:900; background:#eef3f8; border-radius:10px; padding:12px; }\n  .problems-list { flex:1; min-height:118px; display:grid; gap:8px; align-content:center; }\n  .problem-row { min-width:0; display:grid; grid-template-columns:auto minmax(0,1fr); gap:10px; align-items:center; background:#eef3f8; border-radius:10px; padding:9px 10px; }\n  .problem-row strong { display:block; color:#0f172a; font-size:clamp(14px,.82vw,22px); line-height:1.12; font-weight:900; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }\n  .problem-row em { display:block; margin-top:5px; color:#526176; font-size:clamp(11px,.62vw,16px); line-height:1; font-style:normal; font-weight:800; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }\n  .severity { border-radius:999px; padding:6px 10px; color:#fff; font-size:clamp(10px,.58vw,15px); font-weight:900; letter-spacing:.03em; }\n  .severity.critical { background:#dc2626; }\n  .severity.high { background:#f97316; }\n  .severity.warning { background:#facc15; color:#713f12; }\n  .severity.average { background:#f59e0b; color:#78350f; }\n  .severity.info { background:#2f80ed; }\n  .problem-ok { flex:1; min-height:118px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; text-align:center; background:#dcfce7; color:#166534; border-radius:10px; padding:12px; }\n  .problem-ok strong { font-size:clamp(24px,1.45vw,38px); line-height:1; font-weight:900; }\n  .problem-ok span { font-size:clamp(15px,.9vw,24px); font-weight:900; }\n  .summary-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }\n  .summary-grid div { min-width:0; background:#eef3f8; border-radius:9px; padding:8px 10px; }\n  .summary-grid span { display:block; color:#526176; font-size:clamp(10px,.54vw,14px); font-weight:900; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }\n  .summary-grid strong { display:block; margin-top:6px; color:#0f172a; font-size:clamp(15px,.82vw,22px); font-weight:900; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }\n</style>\n\n"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "transparent": true
+    }
+  ]
+}

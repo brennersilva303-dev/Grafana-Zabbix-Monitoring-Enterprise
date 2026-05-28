@@ -1,0 +1,16 @@
+.env
+*.log
+backup/
+backups/
+*.bak
+*.old
+*.secret
+secrets/
+tokens/
+cookies/
+sessions/
+__pycache__/
+.venv/
+venv/
+*.pyc
+.DS_Store
